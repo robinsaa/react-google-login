@@ -1,6 +1,4 @@
-* {
-  border:.01px dotted black !important;
-  }
+
 
 .App {
   text-align: center;
@@ -40,3 +38,36 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar {
+  
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: grey;
+  padding: 14px 16px;
+  
+
+}
+
+.navbar li {
+  display: inline;
+  padding: 20px 16px;
+
+}
+
+.navbar li a {
+  color: white;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+}
+
+
+
+
+

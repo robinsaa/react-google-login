@@ -5,37 +5,54 @@ import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
 import { useState } from 'react';
 import Navbar from './components/Navbar';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
 
   const [user, setUser] = useState(
-    localStorage.getItem('userData') ? localStorage.getItem('userData') : null
+    localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null
   )
 
   const navigate = useNavigate();
 
-  const login = async (data) => {
-    data = true
-    setUser(data);
-    localStorage.setItem('userData', data)
-    navigate('/')
-  }
-
   const logout = () => {
     localStorage.removeItem('userData')
     setUser(null)
-    
   }
+  
+  const handleLogin = async (googleData) => {
+    const res = await fetch('/api/google-login', {
+      method: 'POST',
+      body: JSON.stringify({
+        token: googleData.credential,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await res.json();
+    setUser(data);
+    localStorage.setItem('userData', JSON.stringify(data));
+    navigate('/')
+  };
+
+  const handleFailure = (response) => {
+    console.log(response);
+    console.log("failure");
+    alert(response);
+  };
 
   return (
-    <div>
-      <Navbar user={user} logout={logout} />
-      <Routes>
-        <Route path='/' element={<HomePage user={user}  />} />
-        <Route path='/Login' element={<LoginPage login={login}  />} />
-      </Routes>
-    </div>
-
+    <GoogleOAuthProvider clientId="706190860947-v0k1rh5m3dvhntrh5nb7k9vov85bgrb6.apps.googleusercontent.com">
+      <div>
+        <Navbar user={user} logout={logout} />
+        <Routes>
+          <Route path='/' element={<HomePage user={user} />} />
+          <Route path='/Login' element={<LoginPage login={handleLogin} />} />
+        </Routes>
+      </div>
+    </GoogleOAuthProvider>
   );
 }
 
