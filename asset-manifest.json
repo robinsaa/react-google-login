@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-google-login/static/css/main.cb246acb.css",
+    "main.js": "/react-google-login/static/js/main.606b4abb.js",
+    "static/js/787.d96344f8.chunk.js": "/react-google-login/static/js/787.d96344f8.chunk.js",
+    "index.html": "/react-google-login/index.html",
+    "main.cb246acb.css.map": "/react-google-login/static/css/main.cb246acb.css.map",
+    "main.606b4abb.js.map": "/react-google-login/static/js/main.606b4abb.js.map",
+    "787.d96344f8.chunk.js.map": "/react-google-login/static/js/787.d96344f8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cb246acb.css",
+    "static/js/main.606b4abb.js"
+  ]
+}
