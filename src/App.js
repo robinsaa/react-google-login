@@ -6,6 +6,8 @@ import LoginPage from './components/LoginPage';
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { Portal } from './components/Portal';
+import ProtectedRoute from './hoooks/ProtectedRoute'
 
 function App() {
 
@@ -18,9 +20,11 @@ function App() {
   const logout = () => {
     localStorage.removeItem('userData')
     setUser(null)
+    navigate('/')
   }
   
   const handleLogin = async (googleData) => {
+    //fetch auth details from google-api
     const res = await fetch('/api/google-login', {
       method: 'POST',
       body: JSON.stringify({
@@ -30,11 +34,16 @@ function App() {
         'Content-Type': 'application/json',
       },
     });
-
+    //save response
     const data = await res.json();
+    const status = await res.status;
+    
+    //handle success or failure
+    if (status == '401') {alert("user does not exist")} 
+    else {
     setUser(data);
     localStorage.setItem('userData', JSON.stringify(data));
-    navigate('/')
+    navigate('/portal') }
   };
 
   const handleFailure = (response) => {
@@ -44,12 +53,15 @@ function App() {
   };
 
   return (
-    <GoogleOAuthProvider clientId="706190860947-v0k1rh5m3dvhntrh5nb7k9vov85bgrb6.apps.googleusercontent.com">
-      <div>
+    <GoogleOAuthProvider  clientId="706190860947-v0k1rh5m3dvhntrh5nb7k9vov85bgrb6.apps.googleusercontent.com">
+      <div className='App'>
         <Navbar user={user} logout={logout} />
         <Routes>
           <Route path='/' element={<HomePage user={user} />} />
-          <Route path='/Login' element={<LoginPage login={handleLogin} />} />
+          <Route path='/Login' element={!user ? <LoginPage login={handleLogin} /> : <Navigate to = '/'></Navigate>} />
+          <Route element={<ProtectedRoute user={user} />}>
+            <Route path='/portal' element={<Portal user={user} />} />
+          </ Route>
         </Routes>
       </div>
     </GoogleOAuthProvider>

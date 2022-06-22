@@ -11,24 +11,43 @@ app.use(express.json());
 
 const users = [];
 
+users.push({name: "Aaron Robins", email: "arobins.15@gmail.com"});
+console.log(users);
+
 function upsert(array, item) {
   const i = array.findIndex((_item) => _item.email === item.email);
   if (i > -1) array[i] = item;
   else array.push(item);
 }
 
+function addUser(array, item) {
+  array.push(item);
+}
+
+function userExists (array, item) {
+  const i = array.findIndex((_item) => _item.email === item.email);
+  if (i > -1) return true;
+  else return false;
+}
+
 app.post('/api/google-login', async (req, res) => {
-  console.log("here")
+  
   const { token } = req.body;
   const ticket = await client.verifyIdToken({
     idToken: token,
     audience: "706190860947-v0k1rh5m3dvhntrh5nb7k9vov85bgrb6.apps.googleusercontent.com",
   });
   const { name, email, picture } = ticket.getPayload();
-  upsert(users, { name, email, picture });
-  res.status(201);
-  res.json({ name, email, picture });
-  console.log(users)
+  
+  //check if user exists
+  if (userExists(users, { name, email, picture })) {
+    res.status(201);
+    res.json({ name, email, picture });
+  }  
+  else {
+    res.status(401);
+    res.json("incorrect username or password")
+  }
 });
 
 
