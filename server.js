@@ -32,13 +32,28 @@ function userExists (array, item) {
 
 app.post('/api/google-login', async (req, res) => {
   
-  const { token } = req.body;
-  const ticket = await client.verifyIdToken({
-    idToken: token,
-    audience: "706190860947-v0k1rh5m3dvhntrh5nb7k9vov85bgrb6.apps.googleusercontent.com",
-  });
-  const { name, email, picture } = ticket.getPayload();
+  userDetails = null;
+  const {logintype} = req.body;
+
+  if (logintype == 'google') {
+    const { token } = req.body;
+    console.log(token);
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: "706190860947-v0k1rh5m3dvhntrh5nb7k9vov85bgrb6.apps.googleusercontent.com",
+    });
+    userDetails = ticket.getPayload();
+  }
+
+  else {
+    userDetails = req.body;
+    console.log(userDetails)
+  }
+
+  const { name, email, picture } = userDetails;
   
+
+
   //check if user exists
   if (userExists(users, { name, email, picture })) {
     res.status(201);

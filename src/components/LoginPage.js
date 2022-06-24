@@ -1,23 +1,39 @@
 import React from 'react'
 import { GoogleLogin } from '@react-oauth/google';
 import '../App.css'
+import { useState } from 'react';
 
 function LoginPage(props) {
 
-    const user = props.user
+
+    const [userName, setUserName] = useState('');
+
+    const handleUserNameChange = event => {
+        setUserName(event.target.value);
+        console.log(event)
+        console.log(userName)
+    }
+
+    const [pass, setPass] = useState('');
+
+    const handlePassChange = event => {
+        setUserName(event.target.value);
+        console.log(event)
+        console.log(userName)
+    }
 
     return (
         <div className='container'>
             <div className='row justify-content-md-center'>
                 <div className="col col-md-6">
-                    <div className="card">
-                        <form className='box'>
+                    <div className="card login-card">
+                        <form className='box login-box'>
                             <h1>Login</h1>
                             <p className="text-muted"> Please enter your login and password!</p>
-                            <input type="text"  placeholder="Username"/>
+                            <input type="text" onChange={handleUserNameChange} placeholder="Username"/>
                             <input type="password"  placeholder="Password"/>
                             <a className="forgot text-muted" href="#">Forgot password?</a>
-                            <input type="submit" value="Login" href="#" />
+                            <input type="submit" onClick={props.login} value="Login" href="#" />
                             <div className='row justify-content-md-center' ><GoogleLogin
                                     clientId="706190860947-v0k1rh5m3dvhntrh5nb7k9vov85bgrb6.apps.googleusercontent.com"
                                     render={renderProps => (

@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Portal } from './components/Portal';
 import ProtectedRoute from './hoooks/ProtectedRoute'
+import { Purchase } from './components/Purchase';
 
 function App() {
 
@@ -24,11 +25,14 @@ function App() {
   }
   
   const handleLogin = async (googleData) => {
+    console.log(googleData)
     //fetch auth details from google-api
     const res = await fetch('/api/google-login', {
       method: 'POST',
       body: JSON.stringify({
+        logintype: 'google',
         token: googleData.credential,
+
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -61,6 +65,7 @@ function App() {
           <Route path='/Login' element={!user ? <LoginPage login={handleLogin} /> : <Navigate to = '/'></Navigate>} />
           <Route element={<ProtectedRoute user={user} />}>
             <Route path='/portal' element={<Portal user={user} />} />
+              <Route path='/portal/invest' element={<Purchase />} />
           </ Route>
         </Routes>
       </div>

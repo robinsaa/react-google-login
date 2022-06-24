@@ -4,14 +4,10 @@
   width: 100%;
 }
 
-
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
-
 
 .App-header {
   background-color: #282c34;
@@ -32,8 +28,6 @@
 
 body { 
   padding-top: 60px; 
-  
-
 }
 
 html, body, #App{
@@ -47,9 +41,9 @@ html, body, #App{
 }
 
 
+
 .navbar {
   background: #0C120C;
-
 }
 
 .nav a {
@@ -69,15 +63,15 @@ html, body, #App{
   float: right;
 }
 
-.card{
+.login-card{
   margin-top: 30%;
   margin-bottom: 20%;
   border:none;
   background: linear-gradient(to right, #bebebe, #c5fff7);;
- 
+  border: .1px solid red !important;
 }
 
-.box {
+.login-box {
   
   padding: 40px;
   text-align: center;
@@ -85,8 +79,8 @@ html, body, #App{
   
 }
 
-.box input[type="text"],
-.box input[type="password"]
+.login-box input[type="text"],
+.login-box input[type="password"]
 {
   border: 0;
   background: none;
@@ -102,7 +96,9 @@ html, body, #App{
   transition: 0.25s
 }
 
-.box input[type="submit"] {
+
+
+.login-box input[type="submit"] {
   border: 0;
   background: none;
   display: block;
@@ -117,6 +113,168 @@ html, body, #App{
   cursor: pointer
 }
 
-.box input[type="submit"]:hover {
+.login-box input[type="submit"]:hover {
   background: linear-gradient(to right, #f7f7f784, #ba86dc61);
 }
+
+.purchase-card{
+
+  border:none;
+  background: linear-gradient(to right, #bebebe, #c5fff7);;
+  border: .1px solid red !important;
+}
+
+.summary-card{
+  margin-bottom: 20%;
+  border:none;
+  background: linear-gradient(to right, #bebebe, #c5fff7);;
+  border: .1px solid red !important;
+  height: 100%;
+  
+}
+
+.summary-box {
+  
+  padding-top: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: left;
+  transition: 0.25s;
+
+  
+}
+
+.purchase-box {
+  padding: 40px;
+  text-align: center;
+  transition: 0.25s;
+  
+}
+
+
+
+.purchase-box input[type="text"]
+{
+
+  text-align: center;
+  border: 2px solid black;
+  min-height: 50px;
+  width: 70%;
+  outline: none;
+  color: grey;
+  border-radius: 24px;
+  transition: 0.25s
+}
+
+.purchase-box input[type="submit"] {
+  border: 0;
+  display: block;
+  margin: 7px auto;
+  text-align: center;
+  border: 2px solid black;
+  padding: 10px 40px;
+  outline: none;
+  color: rgb(128, 128, 128);
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer
+}
+
+.purchase-box input[type="checkbox"] {
+  border: 0;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  border: 2px solid black;
+  padding: 14px 40px;
+  outline: none;
+  color: rgb(128, 128, 128);
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer
+}
+
+.purchase-box input[type="submit"]:hover {
+  background: linear-gradient(to right, #f7f7f784, #ba86dc61);
+}
+
+
+
+.purchase-card{
+ 
+  border:none;
+  background: linear-gradient(to right, #bebebe, #ffffff);;
+  border: .1px solid red !important;
+}
+
+.padding10 {
+  padding:10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: grey;
+}
+
+
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+

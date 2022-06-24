@@ -20,7 +20,10 @@ function Navbar(props) {
                     {user ?
                     <>
                     <li className='nav-item'>
-                        <NavLink className='nav-link' to='/portal'>PORTAL</NavLink>
+                        <NavLink className='nav-link' to='/portal'>VAULT</NavLink>
+                    </li>
+                    <li className='nav-item'>
+                        <NavLink className='nav-link' to='/portal/invest'>INVEST</NavLink>
                     </li>
                     </> :null}
                 </ul>
@@ -35,12 +38,7 @@ function Navbar(props) {
                     </li>}
                 </ul>
             </div>
-            
-                
-            
         </nav>
-
-
     )
 }
 
