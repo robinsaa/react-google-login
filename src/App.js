@@ -36,7 +36,8 @@ function App() {
   const handleLogin = async (googleData) => {
     console.log(googleData)
     //fetch auth details from google-api
-    const res = await fetch(`${process.env.API_URL ? process.env.API_URL :'' }/login`, {
+    console.log(`${process.env.API_URL ? process.env.API_URL :''}/login`)
+    const res = await fetch(`${process.env.API_URL ? process.env.API_URL :''}/login`, {
       method: 'POST',
       body: JSON.stringify({
         logintype: 'google',
