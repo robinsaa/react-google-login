@@ -10,7 +10,10 @@ import { Portal } from './components/Portal';
 import ProtectedRoute from './hoooks/ProtectedRoute'
 import { Purchase } from './components/Purchase';
 
+
 function App() {
+
+  const apiURL = 'https://precious-api-test.herokuapp.com';
 
   console.log(process.env.NODE_ENV)
 
@@ -36,8 +39,8 @@ function App() {
   const handleLogin = async (googleData) => {
     console.log(googleData)
     //fetch auth details from google-api
-    console.log(`${process.env.API_URL ? process.env.API_URL :''}/login`)
-    const res = await fetch(`${process.env.API_URL ? process.env.API_URL :''}/login`, {
+    console.log(`${process.env.API_URL ? process.env.API_URL:''}/login`)
+    const res = await fetch(`${process.env.NODE_ENV ? apiURL :''}/login`, {
       method: 'POST',
       body: JSON.stringify({
         logintype: 'google',
