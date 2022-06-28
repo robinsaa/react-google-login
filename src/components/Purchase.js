@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { OneOffPurchase } from './OneOffPurchase';
 
-export const Purchase = () => {
+export const Purchase = (props) => {
 
     const [grams, setGrams] = useState('');
-    const [gramsFormatted, setGramsFormatted] = useState("");
     const [dollars, setDollars] = useState("");
-    const [dollarsFormatted, setDollarsFormatted] = useState("");
     const [unitType, setUnitType] = useState(() => "Grams");
 
+    //If unit type is updated we need to update the weight measurement
     useEffect(() => {
         if (!grams == '') {
             updateWeight();
@@ -19,12 +18,14 @@ export const Purchase = () => {
         (unitType == 'Oz') ? setUnitType("Grams") : setUnitType("Oz")
     }
     
+    //Update weight according to unit type selected
     function updateWeight() {
         (unitType == 'Grams') ?
             setGrams((grams * 28.35).toFixed(3)) :
             setGrams((grams / 28.35).toFixed(3))
     };
 
+    //Update dollar amount when weight is changed
     const updateValuesFromGrams = (e) => {
         const multiplier = (unitType == 'Grams') ? (2700 / 28.35) : (2700 / 1)
         if (e == "") {
@@ -39,6 +40,7 @@ export const Purchase = () => {
         }
     }
 
+    //Update weight amount when dollar is changed
     const updateValuesFromDollars = (e) => {
         const multiplier = (unitType == 'Grams') ? (2700 / 28.35) : (2700 / 1)
 
@@ -50,7 +52,6 @@ export const Purchase = () => {
             setDollars(e)
             const grams = e / multiplier
             setGrams(grams.toFixed(3))
-           
         }
     }
 
@@ -63,6 +64,7 @@ export const Purchase = () => {
             dollars = {dollars}
             grams = {grams}
             unitType = {unitType}
+            handleOrder = {props.handleOrder}
             />
         </div>
     )

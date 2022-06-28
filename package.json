@@ -1,7 +1,7 @@
 {
   "name": "google-user-auth",
   "homepage": "https://robinsaa.github.io/react-google-login/",
-  "proxy": "http://localhost:9999",
+  "proxy": "http://localhost:3002",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

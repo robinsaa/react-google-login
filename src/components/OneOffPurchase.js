@@ -5,7 +5,6 @@ export const OneOffPurchase = (props) => {
 
     return (
         <div style={{ marginTop: '10%' }} className='row justify-content-md-center'>
-
             <div className="col col-md-5">
                 <div className="card purchase-card">
                     <form className='box purchase-box'>
@@ -19,11 +18,18 @@ export const OneOffPurchase = (props) => {
                             </label>
                             <div>Ounces</div>
                         </div>
-                        <input id="floatingInput" type="text" value={props.grams} placeholder={'In ' + props.unitType} 
-                        onInput={e => props.updateValuesFromGrams(e.target.value)} />
-                        
+                        <input 
+                        id="floatingInput" 
+                        type="number" 
+                        value={props.grams} 
+                        placeholder={'In ' + props.unitType}
+                        onInput={e => props.updateValuesFromGrams(e.target.value)} 
+                        />
                         <div>≈ </div>
-                        <input type="text" value={props.dollars} placeholder="In dollars" 
+                        <input 
+                        type="number" 
+                        value={props.dollars} 
+                        placeholder="In dollars"
                         onInput={e => props.updateValuesFromDollars(e.target.value)} />
                         <div className='row justify-content-md-center' ></div>
                         <div className="col-md-12">

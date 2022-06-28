@@ -1,4 +1,4 @@
-.App {
+/* .App {
   border: .1px solid red !important;
   height: 100%;
   width: 100%;
@@ -153,7 +153,7 @@ html, body, #App{
 
 
 
-.purchase-box input[type="text"]
+.purchase-box input[type="number"]
 {
 
   text-align: center;
@@ -269,12 +269,7 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-}
-
-
-
-
-
+} 
 
 
 

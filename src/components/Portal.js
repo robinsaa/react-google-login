@@ -1,9 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
 export const Portal = (props) => {
     
     const user = props.user;
+
 
     return (
         <div className="container">

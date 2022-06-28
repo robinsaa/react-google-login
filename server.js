@@ -30,6 +30,17 @@ function userExists (array, item) {
   else return false;
 }
 
+app.post('/api/purchase', (req, res) => {
+const body = req.body;
+const user = body.user;
+const weight = body.weight;
+const dollars = body.dollars;
+const date = body.date;
+}
+
+
+)
+
 app.post('/api/google-login', async (req, res) => {
   
   userDetails = null;
@@ -37,7 +48,6 @@ app.post('/api/google-login', async (req, res) => {
 
   if (logintype == 'google') {
     const { token } = req.body;
-    console.log(token);
     const ticket = await client.verifyIdToken({
       idToken: token,
       audience: "706190860947-v0k1rh5m3dvhntrh5nb7k9vov85bgrb6.apps.googleusercontent.com",

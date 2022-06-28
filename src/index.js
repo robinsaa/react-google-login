@@ -1,3 +1,6 @@
+//This is a React web application 
+//Author --> Aaron Robins
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

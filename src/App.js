@@ -12,9 +12,14 @@ import { Purchase } from './components/Purchase';
 
 function App() {
 
+  console.log(process.env.NODE_ENV)
+
   const [user, setUser] = useState(
     localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null
   )
+
+  const [holdings, setHoldings] = useState([1,2,3])
+
 
   const navigate = useNavigate();
 
@@ -23,16 +28,19 @@ function App() {
     setUser(null)
     navigate('/')
   }
+
+  const handleOrder = () => {
+    holdings.push(5)
+  }
   
   const handleLogin = async (googleData) => {
     console.log(googleData)
     //fetch auth details from google-api
-    const res = await fetch('/api/google-login', {
+    const res = await fetch(`${process.env.API_URL ? process.env.API_URL :'' }/login`, {
       method: 'POST',
       body: JSON.stringify({
         logintype: 'google',
         token: googleData.credential,
-
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -64,8 +72,8 @@ function App() {
           <Route path='/' element={<HomePage user={user} />} />
           <Route path='/Login' element={!user ? <LoginPage login={handleLogin} /> : <Navigate to = '/'></Navigate>} />
           <Route element={<ProtectedRoute user={user} />}>
-            <Route path='/portal' element={<Portal user={user} />} />
-              <Route path='/portal/invest' element={<Purchase />} />
+            <Route path='/portal' element={<Portal user={user} holdings={holdings} />} />
+              <Route path='/portal/invest' element={<Purchase handleOrder = {handleOrder} />} />
           </ Route>
         </Routes>
       </div>
