@@ -9,7 +9,6 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Portal } from './components/Portal';
 import ProtectedRoute from './hoooks/ProtectedRoute'
 import { Purchase } from './components/Purchase';
-require('dotenv').config()
 
 function App() {
 
@@ -39,7 +38,7 @@ function App() {
     //fetch auth details from google-api
 
     console.log(`${process.env.API_URL ? process.env.API_URL:''}/login`)
-    const res = await fetch(`${process.env.NODE_ENV ? apiURL :''}/login`, {
+    const res = await fetch(`${apiURL}/login`, {
       method: 'POST',
       body: JSON.stringify({
         logintype: 'google',
