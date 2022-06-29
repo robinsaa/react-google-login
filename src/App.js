@@ -13,7 +13,7 @@ import { Purchase } from './components/Purchase';
 function App() {
 
   // https://precious-api-test.herokuapp.com
-  const apiURL = '';
+  const apiURL = 'https://precious-api-test.herokuapp.com';
 
   const [user, setUser] = useState(
     localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null
@@ -37,7 +37,7 @@ function App() {
   const handleLogin = async (googleData) => {
     console.log(googleData)
     //fetch auth details from google-api
-
+    console.log(`${apiURL}/login`)
     const res = await fetch(`${apiURL}/login`, {
       method: 'POST',
       body: JSON.stringify({
