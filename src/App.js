@@ -9,13 +9,11 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Portal } from './components/Portal';
 import ProtectedRoute from './hoooks/ProtectedRoute'
 import { Purchase } from './components/Purchase';
-
+require('dotenv').config()
 
 function App() {
 
   const apiURL = 'https://precious-api-test.herokuapp.com';
-
-  console.log(process.env.NODE_ENV)
 
   const [user, setUser] = useState(
     localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null
@@ -39,6 +37,7 @@ function App() {
   const handleLogin = async (googleData) => {
     console.log(googleData)
     //fetch auth details from google-api
+
     console.log(`${process.env.API_URL ? process.env.API_URL:''}/login`)
     const res = await fetch(`${process.env.NODE_ENV ? apiURL :''}/login`, {
       method: 'POST',
