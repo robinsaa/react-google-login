@@ -13,7 +13,7 @@ import { Purchase } from './components/Purchase';
 function App() {
 
   // https://precious-api-test.herokuapp.com
-  const apiURL = 'https://precious-api-test.herokuapp.com';
+  const apiURL = '';
 
   const [user, setUser] = useState(
     localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null
