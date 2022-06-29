@@ -12,7 +12,8 @@ import { Purchase } from './components/Purchase';
 
 function App() {
 
-  const apiURL = 'https://precious-api-test.herokuapp.com';
+  // https://precious-api-test.herokuapp.com
+  const apiURL = '';
 
   const [user, setUser] = useState(
     localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null
@@ -37,7 +38,6 @@ function App() {
     console.log(googleData)
     //fetch auth details from google-api
 
-    console.log(`${process.env.API_URL ? process.env.API_URL:''}/login`)
     const res = await fetch(`${apiURL}/login`, {
       method: 'POST',
       body: JSON.stringify({
